@@ -15,6 +15,14 @@ public class ActionFactoryImpl implements ActionFactory {
 
     @Override
     public Action newAction(Percept p) {
-        return null;
+        if (p == null) {
+            throw new IllegalArgumentException("percept cannot be null");
+        }
+
+        if (p.isDirty()) {
+            return new SuckAction();
+        }
+
+        return new GoAction(p.getPosition());
     }
 }
