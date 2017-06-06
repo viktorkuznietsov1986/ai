@@ -4,20 +4,20 @@ package vacuumworld;
  * Created by Viktor on 6/4/17.
  * Agent for vacuum cleaner in vacuum world.
  */
-public interface Agent {
-    /**
-     * Perform a sucking action to clean up the dirt.
-     */
-    void suck();
+public abstract class Agent {
+
+    private ActionFactory actionFactory;
+
+    public Agent(ActionFactory actionFactory) {
+        this.actionFactory = actionFactory;
+    }
 
     /**
-     * Go at any direction in the world. If coming to bounds of the world, do nothing.
-     * @param direction
+     * Act according to the percept.
+     * @param p percept.
      */
-    void go(Direction direction);
-
-    /**
-     * Do nothing.
-     */
-    void idle();
+    public void perform(Percept p) {
+        Action action = actionFactory.newAction(p);
+        action.perform();
+    }
 }

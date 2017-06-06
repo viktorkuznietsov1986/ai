@@ -2,6 +2,22 @@ package vacuumworld;
 
 /**
  * Created by Viktor on 6/4/17.
+ * Represents the action performed under VacuumCleaner.
  */
-public interface Action {
+public abstract class Action {
+
+    VacuumCleanerModel cleaner;
+
+    public Action(VacuumCleanerModel cleaner) {
+        if (cleaner == null) {
+            throw new IllegalArgumentException("cleaner cannot be null");
+        }
+
+        this.cleaner = cleaner;
+    }
+
+    /**
+     *
+     */
+    abstract void perform();
 }
