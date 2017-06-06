@@ -1,28 +1,26 @@
 package vacuumworld;
 
 /**
- * Created by Viktor on 6/5/17.
+ * Created by evikuzn on 6/6/2017.
  */
 public class ActionFactoryImpl implements ActionFactory {
-    private static ActionFactoryImpl instance = new ActionFactoryImpl();
+    VacuumCleanerModel cleaner;
 
-    public static ActionFactoryImpl getInstance() {
-        return instance;
-    }
-
-    private ActionFactoryImpl() {
+    ActionFactoryImpl(VacuumCleanerModel cleaner) {
+        this.cleaner = cleaner;
     }
 
     @Override
     public Action newAction(Percept p) {
         if (p == null) {
-            throw new IllegalArgumentException("percept cannot be null");
+            throw new IllegalArgumentException("p cannot be null");
         }
 
         if (p.isDirty()) {
-            return new SuckAction();
+            return new SuckAction(cleaner);
         }
 
-        return new GoAction(p.getPosition());
+        return new IdleAction(cleaner);
     }
+
 }
