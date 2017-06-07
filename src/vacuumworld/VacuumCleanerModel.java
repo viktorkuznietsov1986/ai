@@ -1,5 +1,7 @@
 package vacuumworld;
 
+import org.jetbrains.annotations.NotNull;
+
 /**
  * Created by Viktor on 6/5/17.
  */
@@ -8,8 +10,10 @@ public abstract class VacuumCleanerModel {
     protected VacuumWorld world;
     protected Position position;
 
-    public VacuumCleanerModel(VacuumWorld world) {
+    public VacuumCleanerModel(VacuumWorld world, Position position) {
+
         this.world = world;
+        this.position = position;
     }
 
     public Percept getPercept() {
@@ -35,24 +39,45 @@ public abstract class VacuumCleanerModel {
      * Go at any direction in the world. If coming to bounds of the world, do nothing.
      * @param direction
      */
-    void go(Direction direction) {
-        if (cango(direction)) {
-            updatePosition(direction);
+    void go(Direction direction) throws CantGoException {
+        Position p = getPosition(direction);
+
+        if (world.isSectorAvailable(p)) {
+            position = p;
         }
+        else {
+            throw new CantGoException("go: cannot go by the following direction: " + direction);
+        }
+
     }
 
-    /**
-     * Checks whether the vacuum cleaner can go towards the specified direction.
-     * @param direction
-     * @return true if vacuum cleaner can go, false otherwise.
-     */
-    abstract boolean cango(Direction direction);
+    boolean cango(Direction direction) {
+        Position p = getPosition(direction);
+        return world.isSectorAvailable(p);
+    }
 
-    /**
-     * Updates position according to the chosen direction.
-     * @param direction
-     */
-    abstract void updatePosition(Direction direction);
+    @NotNull
+    private Position getPosition(Direction direction) {
+        int x = position.getX();
+        int y = position.getY();
+
+        switch (direction) {
+            case UP:
+                --y;
+                break;
+            case DOWN:
+                ++y;
+                break;
+            case LEFT:
+                --x;
+                break;
+            case RIGHT:
+                ++x;
+                break;
+        }
+
+        return new Position(x, y);
+    }
 
     /**
      * Do nothing.

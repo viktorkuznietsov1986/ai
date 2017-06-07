@@ -12,7 +12,13 @@ class GoAction extends Action {
     }
 
     @Override
-    void perform() {
-        cleaner.go(direction);
+    int perform() {
+        try {
+            cleaner.go(direction);
+        } catch (CantGoException e) {
+            e.printStackTrace();
+        }
+
+        return 0;
     }
 }

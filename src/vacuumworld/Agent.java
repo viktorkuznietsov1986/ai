@@ -4,7 +4,7 @@ package vacuumworld;
  * Created by Viktor on 6/4/17.
  * Agent for vacuum cleaner in vacuum world.
  */
-public class Agent {
+public abstract class Agent {
 
     private VacuumCleanerModel cleaner;
     private int performance = 0;
@@ -19,7 +19,7 @@ public class Agent {
      */
     public void perform(Percept p) {
         Action action = getAction(p);
-        action.perform();
+        performance += action.perform();
     }
 
     public int getPerformance() {
@@ -44,7 +44,5 @@ public class Agent {
         return new IdleAction(cleaner);
     }
 
-    protected Direction chooseDirection(Position p) {
-        return Direction.DOWN;
-    }
+    protected abstract Direction chooseDirection(Position p);
 }

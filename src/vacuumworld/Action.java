@@ -17,7 +17,8 @@ public abstract class Action {
     }
 
     /**
-     *
+     * Does the actual work and returns the performance value for the specified step.
+     * @return
      */
-    abstract void perform();
+    abstract int perform();
 }

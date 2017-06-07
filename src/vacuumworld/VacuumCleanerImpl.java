@@ -8,30 +8,24 @@ import com.sun.javaws.exceptions.InvalidArgumentException;
 public class VacuumCleanerImpl extends VacuumCleanerModel {
 
 
-
-    public VacuumCleanerImpl(VacuumWorld world) {
-
+    public VacuumCleanerImpl(VacuumWorld world, Position position) {
+        super(world, position);
     }
-
-
 
     @Override
     void suck() {
-        ++performance;
+        System.out.println("action: suck.");
+        world.cleanSector(position);
     }
 
     @Override
-    boolean cango(Direction direction) {
-        return false;
-    }
-
-    @Override
-    void updatePosition(Direction direction) {
-
+    void go(Direction direction) throws CantGoException {
+        super.go(direction);
+        System.out.println("action: go " + direction);
     }
 
     @Override
     void idle() {
-
+        System.out.println("action: idle.");
     }
 }

@@ -10,7 +10,8 @@ class SuckAction extends Action {
     }
 
     @Override
-    public void perform() {
+    int perform() {
         cleaner.suck();
+        return 1;
     }
 }

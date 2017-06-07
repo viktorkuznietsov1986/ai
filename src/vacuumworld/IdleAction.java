@@ -10,7 +10,8 @@ class IdleAction  extends Action {
     }
 
     @Override
-    void perform() {
+    int perform() {
         cleaner.idle();
+        return 0;
     }
 }

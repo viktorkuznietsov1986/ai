@@ -1,5 +1,7 @@
 package vacuumworld;
 
+import java.util.Random;
+
 /**
  * Created by Viktor on 6/4/17.
  */
@@ -19,9 +21,31 @@ public class VacuumWorld {
         }
     }
 
+    public boolean isSectorAvailable(Position p) {
+        return (p.getY() < configuration.length) && (p.getX() < configuration[p.getY()].length);
+    }
+
     public boolean isSectorDirty(Position p) {
 
         return configuration[p.getY()][p.getX()];
+    }
+
+    public void cleanSector(Position p) {
+        configuration[p.getY()][p.getX()] = false;
+    }
+
+    public void generateRandormDirt() {
+        int y = configuration.length;
+
+        Random r = new Random();
+        y = r.nextInt(y);
+
+        int x = configuration[y].length;
+        x = r.nextInt(x);
+
+        boolean isDirty = r.nextBoolean();
+
+        configuration[y][x] = isDirty;
     }
 
 
