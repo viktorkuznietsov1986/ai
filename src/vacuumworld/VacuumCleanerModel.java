@@ -4,14 +4,26 @@ package vacuumworld;
  * Created by Viktor on 6/5/17.
  */
 public abstract class VacuumCleanerModel {
-    protected int performance = 0;
 
-    /**
-     * Returns the gained performance.
-     * @return the gained performance.
-     */
-    public int getPerformance() {
-        return performance;
+    protected VacuumWorld world;
+    protected Position position;
+
+    public VacuumCleanerModel(VacuumWorld world) {
+        this.world = world;
+    }
+
+    public Percept getPercept() {
+        return new Percept() {
+            @Override
+            public boolean isDirty() {
+                return world.isSectorDirty(position);
+            }
+
+            @Override
+            public Position getPosition() {
+                return position;
+            }
+        };
     }
 
     /**

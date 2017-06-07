@@ -5,13 +5,15 @@ import com.sun.javaws.exceptions.InvalidArgumentException;
 /**
  * Created by Viktor on 6/5/17.
  */
-public class VacuumCleanerImpl extends VacuumCleanerModel implements VacuumCleanerActor {
+public class VacuumCleanerImpl extends VacuumCleanerModel {
 
 
-    @Override
-    public void perform(Action action) {
-        action.perform();
+
+    public VacuumCleanerImpl(VacuumWorld world) {
+
     }
+
+
 
     @Override
     void suck() {

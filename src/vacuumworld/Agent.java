@@ -35,6 +35,16 @@ public class Agent {
             return new SuckAction(cleaner);
         }
 
+        Direction direction = chooseDirection(p.getPosition());
+
+        if (cleaner.cango(direction)) {
+            return new GoAction(cleaner, direction);
+        }
+
         return new IdleAction(cleaner);
+    }
+
+    protected Direction chooseDirection(Position p) {
+        return Direction.DOWN;
     }
 }
