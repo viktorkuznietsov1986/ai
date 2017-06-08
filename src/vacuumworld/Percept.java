@@ -16,4 +16,10 @@ public interface Percept {
      * @return the current position.
      */
     Position getPosition();
+
+    /**
+     * Gets the number of clean cells in the world.
+     * @return the number of clean cells in the world.
+     */
+    int getNumberOfCleanCells();
 }

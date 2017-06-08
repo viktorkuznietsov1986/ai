@@ -25,6 +25,11 @@ public abstract class VacuumCleanerModel {
             public Position getPosition() {
                 return position;
             }
+
+            @Override
+            public int getNumberOfCleanCells() {
+                return world.getNumberOfCleanCells();
+            }
         };
     }
 

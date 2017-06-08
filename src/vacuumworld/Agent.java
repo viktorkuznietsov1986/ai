@@ -19,7 +19,7 @@ public abstract class Agent {
      */
     public void perform(Percept p) {
         Action action = getAction(p);
-        performance += action.perform();
+        performance += p.getNumberOfCleanCells() + action.perform();
     }
 
     public int getPerformance() {

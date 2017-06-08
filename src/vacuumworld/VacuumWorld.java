@@ -34,6 +34,20 @@ public class VacuumWorld {
         configuration[p.getY()][p.getX()] = false;
     }
 
+    public int getNumberOfCleanCells() {
+        int number = 0;
+
+        for (int i = 0; i < configuration.length; ++i) {
+            for (int j = 0; j < configuration[i].length; ++j) {
+                if (!configuration[i][j]) {
+                    ++number;
+                }
+            }
+        }
+
+        return number;
+    }
+
     public void generateRandormDirt() {
         int y = configuration.length;
 
