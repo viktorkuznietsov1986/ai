@@ -1,7 +1,5 @@
 package vacuumworld;
 
-import org.jetbrains.annotations.NotNull;
-
 /**
  * Created by Viktor on 6/5/17.
  */
@@ -56,7 +54,6 @@ public abstract class VacuumCleanerModel {
         return world.isSectorAvailable(p);
     }
 
-    @NotNull
     private Position getPosition(Direction direction) {
         int x = position.getX();
         int y = position.getY();

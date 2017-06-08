@@ -6,7 +6,7 @@ package vacuumworld;
  */
 public abstract class Agent {
 
-    private VacuumCleanerModel cleaner;
+    protected VacuumCleanerModel cleaner;
     private int performance = 0;
 
     public Agent(VacuumCleanerModel cleaner) {
@@ -26,23 +26,7 @@ public abstract class Agent {
         return performance;
     }
 
-    protected Action getAction(Percept p) {
-        if (p == null) {
-            throw new IllegalArgumentException("p cannot be null");
-        }
-
-        if (p.isDirty()) {
-            return new SuckAction(cleaner);
-        }
-
-        Direction direction = chooseDirection(p.getPosition());
-
-        if (cleaner.cango(direction)) {
-            return new GoAction(cleaner, direction);
-        }
-
-        return new IdleAction(cleaner);
-    }
+    protected abstract Action getAction(Percept p);
 
     protected abstract Direction chooseDirection(Position p);
 }
