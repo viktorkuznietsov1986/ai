@@ -1,5 +1,6 @@
 package vacuumworld;
 
+import vacuumworld.simulator.SimpleWorldSimpleReflexAgentGoPenaltyRunner;
 import vacuumworld.simulator.SimpleWorldSimpleReflexAgentRunner;
 
 /**
@@ -8,7 +9,8 @@ import vacuumworld.simulator.SimpleWorldSimpleReflexAgentRunner;
 public class Main {
     public static void main(String[] args) {
 
-        new SimpleWorldSimpleReflexAgentRunner().run();
+        //new SimpleWorldSimpleReflexAgentRunner().run();
+        new SimpleWorldSimpleReflexAgentGoPenaltyRunner().run();
 
 
     }
