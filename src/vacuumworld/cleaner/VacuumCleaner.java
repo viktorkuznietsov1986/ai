@@ -13,6 +13,7 @@ public abstract class VacuumCleaner {
 
     protected VacuumWorld world;
     protected Position position;
+    private Position startPosition;
 
     /**
      * Ctor.
@@ -23,6 +24,15 @@ public abstract class VacuumCleaner {
 
         this.world = world;
         this.position = position;
+        this.startPosition = position;
+    }
+
+    /**
+     * Get start position of the cleaner.
+     * @return the start position of the cleaner.
+     */
+    public Position getStartPosition() {
+        return startPosition;
     }
 
     /**
@@ -75,6 +85,10 @@ public abstract class VacuumCleaner {
      * @return true if it's possible to go at the following direction, false otherwise.
      */
     public boolean cango(Direction direction) {
+        if (direction == Direction.NONE) {
+            return false;
+        }
+
         Position p = getPosition(direction);
         return world.isSectorAvailable(p);
     }

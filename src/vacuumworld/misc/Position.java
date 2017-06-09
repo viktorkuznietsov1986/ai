@@ -19,4 +19,23 @@ public class Position {
     public int getY() {
         return y;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null) {
+            throw new NullPointerException();
+        }
+
+        Position p = (Position) o;
+
+        return this.x == p.x && this.y == p.y;
+    }
+
+    @Override
+    public int hashCode() {
+        int code = 17;
+        code = 31*code + x;
+        code = 31*code + y;
+        return code;
+    }
 }
