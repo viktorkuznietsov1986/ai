@@ -1,4 +1,6 @@
-package vacuumworld;
+package vacuumworld.world;
+
+import vacuumworld.misc.Position;
 
 import java.util.Random;
 

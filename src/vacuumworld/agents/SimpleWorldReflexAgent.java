@@ -1,10 +1,19 @@
-package vacuumworld;
+package vacuumworld.agents;
+
+import vacuumworld.actions.Action;
+import vacuumworld.actions.GoAction;
+import vacuumworld.actions.IdleAction;
+import vacuumworld.actions.SuckAction;
+import vacuumworld.cleaner.VacuumCleaner;
+import vacuumworld.misc.Direction;
+import vacuumworld.misc.Percept;
+import vacuumworld.misc.Position;
 
 /**
  * Created by evikuzn on 6/7/2017.
  */
 public class SimpleWorldReflexAgent extends Agent {
-    public SimpleWorldReflexAgent(VacuumCleanerModel cleaner) {
+    public SimpleWorldReflexAgent(VacuumCleaner cleaner) {
         super(cleaner);
     }
 

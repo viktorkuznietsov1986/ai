@@ -1,4 +1,12 @@
-package vacuumworld;
+package vacuumworld.simulator;
+
+import vacuumworld.agents.Agent;
+import vacuumworld.agents.SimpleWorldReflexAgent;
+import vacuumworld.cleaner.VacuumCleanerImpl;
+import vacuumworld.cleaner.VacuumCleaner;
+import vacuumworld.misc.Position;
+import vacuumworld.world.VacuumWorld;
+import vacuumworld.world.VacuumWorldFactory;
 
 /**
  * Created by Viktor on 6/8/17.
@@ -10,7 +18,7 @@ public class SimpleWorldSimpleReflexAgentRunner implements SimulationRunner {
 
         for (int i = 0; i < 2; ++i) {
             VacuumWorld world = VacuumWorldFactory.getInstance().newSimpleWorld();
-            VacuumCleanerModel cleaner = new VacuumCleanerImpl(world, new Position(i, 0));
+            VacuumCleaner cleaner = new VacuumCleanerImpl(world, new Position(i, 0));
             Agent agent = new SimpleWorldReflexAgent(cleaner);
             Simulator simulator = new Simulator(cleaner, agent, world, 100);
             simulator.start();

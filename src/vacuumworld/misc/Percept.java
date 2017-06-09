@@ -1,4 +1,4 @@
-package vacuumworld;
+package vacuumworld.misc;
 
 /**
  * Created by Viktor on 6/4/17.

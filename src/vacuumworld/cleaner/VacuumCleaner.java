@@ -1,19 +1,34 @@
-package vacuumworld;
+package vacuumworld.cleaner;
+
+import vacuumworld.exceptions.CantGoException;
+import vacuumworld.misc.Direction;
+import vacuumworld.misc.Percept;
+import vacuumworld.misc.Position;
+import vacuumworld.world.VacuumWorld;
 
 /**
  * Created by Viktor on 6/5/17.
  */
-public abstract class VacuumCleanerModel {
+public abstract class VacuumCleaner {
 
     protected VacuumWorld world;
     protected Position position;
 
-    public VacuumCleanerModel(VacuumWorld world, Position position) {
+    /**
+     * Ctor.
+     * @param world the world where the cleaner is located.
+     * @param position the actual position of the cleaner.
+     */
+    public VacuumCleaner(VacuumWorld world, Position position) {
 
         this.world = world;
         this.position = position;
     }
 
+    /**
+     * Gets the actual percept.
+     * @return the actual percept.
+     */
     public Percept getPercept() {
         return new Percept() {
             @Override
@@ -36,13 +51,13 @@ public abstract class VacuumCleanerModel {
     /**
      * Perform a sucking action to clean up the dirt.
      */
-    abstract void suck();
+    public abstract void suck();
 
     /**
      * Go at any direction in the world. If coming to bounds of the world, do nothing.
      * @param direction
      */
-    void go(Direction direction) throws CantGoException {
+    public void go(Direction direction) throws CantGoException {
         Position p = getPosition(direction);
 
         if (world.isSectorAvailable(p)) {
@@ -54,7 +69,12 @@ public abstract class VacuumCleanerModel {
 
     }
 
-    boolean cango(Direction direction) {
+    /**
+     * Checks whether it's possible to go at the following direction.
+     * @param direction the desired direction.
+     * @return true if it's possible to go at the following direction, false otherwise.
+     */
+    public boolean cango(Direction direction) {
         Position p = getPosition(direction);
         return world.isSectorAvailable(p);
     }
@@ -84,5 +104,5 @@ public abstract class VacuumCleanerModel {
     /**
      * Do nothing.
      */
-    abstract void idle();
+    public abstract void idle();
 }

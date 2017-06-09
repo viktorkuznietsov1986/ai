@@ -1,4 +1,4 @@
-package vacuumworld;
+package vacuumworld.exceptions;
 
 /**
  * Created by evikuzn on 6/7/2017.

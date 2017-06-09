@@ -1,4 +1,10 @@
-package vacuumworld;
+package vacuumworld.agents;
+
+import vacuumworld.misc.Direction;
+import vacuumworld.misc.Percept;
+import vacuumworld.misc.Position;
+import vacuumworld.cleaner.VacuumCleaner;
+import vacuumworld.actions.Action;
 
 /**
  * Created by Viktor on 6/4/17.
@@ -6,10 +12,10 @@ package vacuumworld;
  */
 public abstract class Agent {
 
-    protected VacuumCleanerModel cleaner;
+    protected VacuumCleaner cleaner;
     private int performance = 0;
 
-    public Agent(VacuumCleanerModel cleaner) {
+    public Agent(VacuumCleaner cleaner) {
         this.cleaner = cleaner;
     }
 
