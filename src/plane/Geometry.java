@@ -44,6 +44,10 @@ public abstract class Geometry {
 
     }
 
+    public List<Point> getPoints() {
+        return points;
+    }
+
     public int getNumberOfVertices() {
         return points.size();
     }

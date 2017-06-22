@@ -27,7 +27,14 @@ public class BoundariesImpl implements Boundaries {
 
     @Override
     public boolean fits(Geometry g) {
-        return false;
+
+        for (Point p : g.points) {
+            if (!fits(p)) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     @Override
