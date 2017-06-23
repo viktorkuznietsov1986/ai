@@ -6,12 +6,12 @@ import java.util.List;
 
 /**
  * Created by Viktor on 6/13/17.
- * Represents unordered graph data structure.
+ * Represents unordered weighted graph data structure.
  */
 public class Graph {
     protected int v;
     protected int e;
-    protected List<Integer>[] adj;
+    protected List<Edge>[] adj;
 
     /**
      * Ctor.
@@ -32,9 +32,10 @@ public class Graph {
      * @param i first vertex.
      * @param j second vertex.
      */
-    public void add(int i, int j) {
-        adj[i].add(j);
-        adj[j].add(i);
+    public void add(int i, int j, int weight) {
+        Edge edge = new Edge(i, j, weight);
+        adj[i].add(edge);
+        adj[j].add(edge);
         ++e;
     }
 
@@ -59,7 +60,7 @@ public class Graph {
      * @param i vertex id.
      * @return the adjacent list of the connected vertices.
      */
-    public Iterator<Integer> getAdj(int i) {
+    public Iterator<Edge> getAdj(int i) {
         return adj[i].iterator();
     }
 }
