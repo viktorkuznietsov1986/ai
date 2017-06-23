@@ -6,9 +6,9 @@ package graphs;
  */
 public class Edge {
     private int u, v;
-    private int weight;
+    private double weight;
 
-    public Edge(int u, int v, int weight) {
+    public Edge(int u, int v, double weight) {
         this.u = u;
         this.v = v;
         this.weight = weight;
@@ -25,7 +25,7 @@ public class Edge {
         return this.v;
     }
 
-    int getWeight() {
+    double getWeight() {
         return weight;
     }
 }

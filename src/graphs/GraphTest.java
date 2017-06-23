@@ -25,7 +25,7 @@ class GraphTest {
     @Test
     void add() {
         Graph g = new Graph(5);
-        g.add(1, 2, 3);
+        g.add(1, 2, 3.0);
 
         assertEquals(g.getE(), 1);
 
@@ -36,6 +36,7 @@ class GraphTest {
         assertFalse(i.hasNext());
         assertEquals(e.other(1), 2);
         assertEquals(e.other(2), 1);
+        assertEquals(e.getWeight(), 3.0);
 
     }
 

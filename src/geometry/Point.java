@@ -1,4 +1,4 @@
-package plane;
+package geometry;
 
 import com.sun.corba.se.impl.io.TypeMismatchException;
 

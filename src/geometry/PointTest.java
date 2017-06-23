@@ -1,4 +1,4 @@
-package plane;
+package geometry;
 
 import org.junit.jupiter.api.Test;
 

@@ -1,5 +1,7 @@
 package plane;
 
+import geometry.Point;
+
 /**
  * Created by Viktor on 6/19/17.
  */

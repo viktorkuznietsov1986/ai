@@ -1,5 +1,7 @@
 package plane;
 
+import geometry.Point;
+
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;

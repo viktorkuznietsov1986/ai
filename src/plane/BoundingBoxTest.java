@@ -1,6 +1,6 @@
 package plane;
 
-import org.junit.jupiter.api.BeforeEach;
+import geometry.Point;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

@@ -11,7 +11,8 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 class EdgeTest {
     private final Edge e = new Edge(u, v, weight);
-    private static final int u = 4, v = 16, weight = 3;
+    private static final int u = 4, v = 16;
+    private static final double weight = 3.0;
 
     @Test
     void either() {

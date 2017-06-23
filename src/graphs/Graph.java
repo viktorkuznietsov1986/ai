@@ -32,7 +32,7 @@ public class Graph {
      * @param i first vertex.
      * @param j second vertex.
      */
-    public void add(int i, int j, int weight) {
+    public void add(int i, int j, double weight) {
         Edge edge = new Edge(i, j, weight);
         adj[i].add(edge);
         adj[j].add(edge);
