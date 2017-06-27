@@ -1,11 +1,6 @@
 package graphs;
 
-import environment.romania.Cities;
-
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
+import java.util.*;
 
 /**
  * Created by Viktor on 6/23/17.
@@ -14,9 +9,8 @@ import java.util.Queue;
 public class BFS implements Search {
 
     private double totalCost = 0.0;
-    private List<Integer> path = new LinkedList<>();
-    private boolean[] visited;
-    private Edge[] parents;
+    private Map<Integer, Node> nodes = new HashMap<>();
+    private Node searchTree;
 
     public BFS(Graph g, int start, int end) {
         if (g == null)
@@ -28,10 +22,6 @@ public class BFS implements Search {
         if (end < 0 || end >= g.getV())
             throw new IllegalArgumentException();
 
-        visited = new boolean[g.getV()];
-
-        parents = new Edge[g.getV()];
-
 
         Queue<Integer> q = new LinkedList<>();
         q.add(start);
@@ -40,43 +30,43 @@ public class BFS implements Search {
         while (!q.isEmpty()) {
             int u = q.poll();
 
-            if (!visited[u]) {
-                visit(g, q, u);
+            if (!nodes.containsKey(u)) {
+                Node n = new Node();
+                n.action = () -> null;
+                n.state = () -> u;
+                n.parent = null;
+
+                nodes.put(u, n);
+
             }
+
+            if (u == end) {
+                searchTree = nodes.get(u);
+                break;
+            }
+
+            visit(g, q, u);
         }
 
-        findPath(start, end);
+        totalCost = searchTree.pathCost;
     }
 
     private void visit(Graph g, Queue<Integer> q, int u) {
-        visited[u] = true;
 
         for (Iterator<Edge> it = g.getAdj(u); it.hasNext(); ) {
             Edge e = it.next();
             int v = e.other(u);
-            if (!visited[v]) {
+            if (!nodes.containsKey(v)) {
                 q.add(v);
-                parents[v] = e;
+                Node n = new Node();
+                n.action = () -> null;
+                n.state = () -> v;
+                n.parent = nodes.get(u);
+                n.pathCost = n.parent.pathCost + e.getWeight();
+                nodes.put(v, n);
             }
         }
     }
-
-    private void findPath(int start, int end) {
-        if ((start == end) || (end == -1)) {
-            path.add(0, start);
-        }
-        else {
-            Edge e = parents[end];
-
-            if (e != null) {
-                totalCost += e.getWeight();
-                path.add(0, end);
-                findPath(start, e.other(end));
-            }
-        }
-    }
-
-
 
     /**
      * Gets the total cost of the path found.
@@ -94,7 +84,7 @@ public class BFS implements Search {
      * @return the list of edges with the exact path.
      */
     @Override
-    public List<Integer> getPath() {
-        return path;
+    public Node getSearchTree() {
+        return searchTree;
     }
 }

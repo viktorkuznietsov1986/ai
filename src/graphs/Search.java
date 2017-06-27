@@ -4,7 +4,7 @@ import java.util.List;
 
 /**
  * Created by Viktor on 6/23/17.
- * Base interface for each graph searching algorithm.
+ * Base interface for each tree / graph searching algorithm.
  */
 public interface Search {
     /**
@@ -14,8 +14,8 @@ public interface Search {
     double getCost();
 
     /**
-     * Gets the list of vertexes with the exact path.
-     * @return the list of vertexes with the exact path.
+     * Gets the search tree obtained from the tree / graph traversal.
+     * @return the search tree obtained from the tree / graph traversal.
      */
-    List<Integer> getPath();
+    Node getSearchTree();
 }
