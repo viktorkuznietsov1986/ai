@@ -1,9 +1,6 @@
 package environment.romania;
 
-import graphs.BFS;
-import graphs.Graph;
-import graphs.Node;
-import graphs.Search;
+import graphs.*;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -13,21 +10,30 @@ import java.util.List;
  */
 public class RomaniaBFSTest {
     public static void main(String[] args) {
-        RomaniaBuilder builder = new RomaniaBuilder();
-        Graph g = builder.getGraph();
-        Search s = new BFS(g, builder.cities.get(Cities.Arad), builder.cities.get(Cities.Bucharest));
+        Problem problem = new RomaniaProblem();
+        Search s = new BFS(problem, new State() {
+            @Override
+            public Object getState() {
+                return Cities.Arad;
+            }
+        }, new State() {
+            @Override
+            public Object getState() {
+                return Cities.Bucharest;
+            }
+        });
 
         Node n = s.getSearchTree();
-        List<Integer> result = new LinkedList<>();
+        List<Cities> result = new LinkedList<>();
 
         while (n != null) {
-            int state = ((Integer) n.getState().getState()).intValue();
+            Cities state = ((Cities) n.getState().getState());
             result.add(0,  state);
             n = n.getParent();
         }
 
-        for (Integer c : result) {
-            System.out.println(Cities.values()[c]);
+        for (Cities c : result) {
+            System.out.println(c.toString());
         }
 
         System.out.println("Total cost: " + s.getSearchTree().getPathCost());

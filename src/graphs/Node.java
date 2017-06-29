@@ -8,7 +8,6 @@ public class Node {
     double pathCost;
     Node parent;
     State state;
-    Action action;
 
     /**
      * Gets the pathCost.
@@ -35,11 +34,40 @@ public class Node {
     }
 
     /**
-     * Gets the action.
-     * @return the action.
+     * Gets the child node connected to the action.
+     * @param problem
+     * @param action
+     * @return
      */
-    public Action getAction() {
-        return action;
+    public Node getChildNode(Problem problem, Action action) {
+        Node node = new Node();
+        node.state = problem.getResult(state, action);
+        node.parent = this;
+        node.pathCost = pathCost + problem.getStepCost(state, action);
+        return node;
+    }
+
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        }
+
+        Node o = (Node)other;
+
+        return state.equals(o.getState()) &&
+                pathCost == o.getPathCost();
+    }
+
+    public int hashCode() {
+        int result = 17;
+        result = 37*result + state.hashCode();
+
+        long l = Double.doubleToLongBits(pathCost);
+        int c = (int)(l ^ (l >>> 32));
+
+        result = 37*result + c;
+
+        return result;
     }
 
 }

@@ -9,61 +9,57 @@ import java.util.*;
 public class BFS implements Search {
 
     private double totalCost = 0.0;
-    private Map<Integer, Node> nodes = new HashMap<>();
+    private Set<Node> nodes = new HashSet<>();
     private Node searchTree;
 
-    public BFS(Graph g, int start, int end) {
-        if (g == null)
+    public BFS(Problem problem, State start, State end) {
+        if (problem == null)
             throw new IllegalArgumentException();
 
-        if (start < 0 || start >= g.getV())
+        if (start == null)
             throw new IllegalArgumentException();
 
-        if (end < 0 || end >= g.getV())
+        if (end == null)
             throw new IllegalArgumentException();
 
 
-        Queue<Integer> q = new LinkedList<>();
-        q.add(start);
+        Queue<Node> q = new LinkedList<>();
+        Node n = new Node();
+        n.parent = null;
+        n.state = start;
+
+        q.add(n);
 
 
         while (!q.isEmpty()) {
-            int u = q.poll();
+            n = q.poll();
 
-            if (!nodes.containsKey(u)) {
-                Node n = new Node();
-                n.action = () -> null;
-                n.state = () -> u;
-                n.parent = null;
-
-                nodes.put(u, n);
-
+            if (nodes.contains(n)) {
+                continue;
             }
 
-            if (u == end) {
-                searchTree = nodes.get(u);
+            nodes.add(n);
+
+            if (n.getState().equals(end)) {
+                searchTree = n;
                 break;
             }
 
-            visit(g, q, u);
+            visit(problem, q, n);
         }
 
         totalCost = searchTree.pathCost;
     }
 
-    private void visit(Graph g, Queue<Integer> q, int u) {
+    private void visit(Problem problem, Queue<Node> q, Node u) {
 
-        for (Iterator<Edge> it = g.getAdj(u); it.hasNext(); ) {
-            Edge e = it.next();
-            int v = e.other(u);
-            if (!nodes.containsKey(v)) {
-                q.add(v);
-                Node n = new Node();
-                n.action = () -> null;
-                n.state = () -> v;
-                n.parent = nodes.get(u);
-                n.pathCost = n.parent.pathCost + e.getWeight();
-                nodes.put(v, n);
+        List<Action> actions = problem.getActions(u.getState());
+
+        for (Action a : actions) {
+            Node childNode = u.getChildNode(problem, a);
+
+            if (!nodes.contains(childNode)) {
+                q.add(childNode);
             }
         }
     }
