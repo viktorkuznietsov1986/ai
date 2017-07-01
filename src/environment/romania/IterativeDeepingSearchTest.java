@@ -6,19 +6,17 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * Created by Viktor on 6/30/17.
+ * Created by Viktor on 7/1/17.
  */
-public class RomaniaDepthLimitesSearchTest {
+public class IterativeDeepingSearchTest {
     public static void main(String[] args) {
 
-        System.out.println("Depth Limited Search test.");
+        System.out.println("Iterative Deeping Search test.");
 
         Problem problem = new RomaniaProblem();
 
-        int depth = 3;
-
         try {
-            Search s = new DepthLimitedSearch(problem, new State() {
+            Search s = new IterativeDeepingSearch(problem, new State() {
                 @Override
                 public Object getState() {
                     return Cities.Arad;
@@ -28,7 +26,7 @@ public class RomaniaDepthLimitesSearchTest {
                 public Object getState() {
                     return Cities.Bucharest;
                 }
-            }, depth);
+            });
 
             Node n = s.getSearchTree();
             List<Cities> result = new LinkedList<>();
@@ -44,9 +42,6 @@ public class RomaniaDepthLimitesSearchTest {
             }
 
             System.out.println("Total cost: " + s.getCost());
-        }
-        catch (CutoffException e) {
-            System.out.println("Cutoff happened. Nothing has been found at depth " + depth);
         }
         catch (FailureException e) {
             System.out.println("Search failure. No path exists.");

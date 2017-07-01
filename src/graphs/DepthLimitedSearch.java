@@ -13,30 +13,33 @@ public class DepthLimitedSearch implements Search {
     private double totalCost = 0.0;
     private Set<Node> nodes = new HashSet<>();
 
-    public DepthLimitedSearch(Problem problem, State start, State end, int limit) {
+    public DepthLimitedSearch(Problem problem, State start, State end, int limit) throws CutoffException, FailureException {
 
         Node n = new Node();
         n.state = start;
 
-        searchTree = recursiveDLS(problem, n, end, limit);
-
-        if (searchTree == n) {
-            searchTree = null;
+        try {
+            searchTree = recursiveDLS(problem, n, end, limit);
+        } catch (CutoffException e) {
+            throw e;
         }
 
         if (searchTree != null) {
             totalCost = searchTree.getPathCost();
         }
+        else {
+            throw new FailureException();
+        }
     }
 
-    private Node recursiveDLS(Problem problem, Node n, State end, int limit) {
+    private Node recursiveDLS(Problem problem, Node n, State end, int limit) throws CutoffException {
         if (n.getState().equals(end)) {
             searchTree = n;
             return n;
         }
 
         if (limit == 0) {
-            return n;
+            throw new CutoffException();
         }
 
         List<Action> actions = problem.getActions(n.getState());
@@ -53,10 +56,15 @@ public class DepthLimitedSearch implements Search {
                 nodes.add(u);
             }
 
-            Node result = recursiveDLS(problem, u, end, limit-1);
+            Node result = null;
 
-            if (result == u) {
+            try {
+                result = recursiveDLS(problem, u, end, limit-1);
+
+            }
+            catch (CutoffException e) {
                 cutoff_occurred = true;
+                continue;
             }
 
             if (result.getState().equals(end)) {
@@ -66,7 +74,7 @@ public class DepthLimitedSearch implements Search {
         }
 
         if (cutoff_occurred) {
-            return n;
+            throw new CutoffException();
         }
 
         return null;
