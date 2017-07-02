@@ -5,13 +5,11 @@ import java.util.*;
 /**
  * Created by Viktor on 7/1/17.
  */
-public class GreedyBestFirstSearch implements Search {
+public class GreedyBestFirstSearch extends Search {
 
-    private double totalCost = 0.0;
-    private Node searchTree;
     private Set<Node> nodes = new HashSet<>();
 
-    public GreedyBestFirstSearch(Problem problem, State start, State end, Heuristics h) {
+    public GreedyBestFirstSearch(Problem problem, State start, State end, Heuristics h) throws FailureException {
         if (problem == null)
             throw new IllegalArgumentException();
 
@@ -45,7 +43,10 @@ public class GreedyBestFirstSearch implements Search {
         }
 
         if (searchTree != null) {
-            totalCost = searchTree.pathCost;
+            cost = searchTree.pathCost;
+        }
+        else {
+            throw new FailureException();
         }
     }
 
@@ -61,25 +62,5 @@ public class GreedyBestFirstSearch implements Search {
             }
 
         }
-    }
-
-    /**
-     * Gets the total cost of the path found.
-     *
-     * @return the total cost of the path found.
-     */
-    @Override
-    public double getCost() {
-        return totalCost;
-    }
-
-    /**
-     * Gets the search tree obtained from the tree / graph traversal.
-     *
-     * @return the search tree obtained from the tree / graph traversal.
-     */
-    @Override
-    public Node getSearchTree() {
-        return searchTree;
     }
 }

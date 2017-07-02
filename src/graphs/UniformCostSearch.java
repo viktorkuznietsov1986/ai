@@ -6,13 +6,11 @@ import java.util.*;
  * Created by Viktor on 6/27/17.
  * Represents Uniform Cost Search strategy.
  */
-public class UniformCostSearch implements Search {
+public class UniformCostSearch extends Search {
 
-    private final double totalCost;
-    private Node searchTree;
     private Set<Node> nodes = new HashSet<>();
 
-    public UniformCostSearch(Problem problem, State start, State end) {
+    public UniformCostSearch(Problem problem, State start, State end) throws FailureException {
         if (problem == null)
             throw new IllegalArgumentException();
 
@@ -42,7 +40,12 @@ public class UniformCostSearch implements Search {
             visit(problem, q, n);
         }
 
-        totalCost = searchTree.pathCost;
+        if (searchTree != null) {
+            cost = searchTree.pathCost;
+        }
+        else {
+            throw new FailureException();
+        }
     }
 
     private void visit(Problem problem, Queue<Node> q, Node u) {
@@ -57,25 +60,5 @@ public class UniformCostSearch implements Search {
             }
 
         }
-    }
-
-    /**
-     * Gets the total cost of the path found.
-     *
-     * @return the total cost of the path found.
-     */
-    @Override
-    public double getCost() {
-        return totalCost;
-    }
-
-    /**
-     * Gets the search tree obtained from the tree / graph traversal.
-     *
-     * @return the search tree obtained from the tree / graph traversal.
-     */
-    @Override
-    public Node getSearchTree() {
-        return searchTree;
     }
 }

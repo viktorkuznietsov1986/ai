@@ -6,13 +6,11 @@ import java.util.*;
  * Created by Viktor on 6/23/17.
  * Implementation of breadth-first search method.
  */
-public class BFS implements Search {
+public class BFS extends Search {
 
-    private double totalCost = 0.0;
     private Set<Node> nodes = new HashSet<>();
-    private Node searchTree;
 
-    public BFS(Problem problem, State start, State end) {
+    public BFS(Problem problem, State start, State end) throws FailureException {
         if (problem == null)
             throw new IllegalArgumentException();
 
@@ -48,7 +46,12 @@ public class BFS implements Search {
             visit(problem, q, n);
         }
 
-        totalCost = searchTree.pathCost;
+        if (searchTree != null) {
+            cost = searchTree.pathCost;
+        }
+        else {
+            throw new FailureException();
+        }
     }
 
     private void visit(Problem problem, Queue<Node> q, Node u) {
@@ -62,25 +65,5 @@ public class BFS implements Search {
                 q.add(childNode);
             }
         }
-    }
-
-    /**
-     * Gets the total cost of the path found.
-     *
-     * @return the total cost of the path found.
-     */
-    @Override
-    public double getCost() {
-        return totalCost;
-    }
-
-    /**
-     * Gets the list of edges with the exact path.
-     *
-     * @return the list of edges with the exact path.
-     */
-    @Override
-    public Node getSearchTree() {
-        return searchTree;
     }
 }

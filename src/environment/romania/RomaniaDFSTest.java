@@ -14,31 +14,38 @@ public class RomaniaDFSTest {
         System.out.println("DFS search test.");
 
         Problem problem = new RomaniaProblem();
-        Search s = new DFS(problem, new State() {
-            @Override
-            public Object getState() {
-                return Cities.Arad;
-            }
-        }, new State() {
-            @Override
-            public Object getState() {
-                return Cities.Bucharest;
-            }
-        });
 
-        Node n = s.getSearchTree();
-        List<Cities> result = new LinkedList<>();
+        try {
+            Search s = new DFS(problem, new State() {
+                @Override
+                public Object getState() {
+                    return Cities.Arad;
+                }
+            }, new State() {
+                @Override
+                public Object getState() {
+                    return Cities.Bucharest;
+                }
+            });
 
-        while (n != null) {
-            Cities state = ((Cities) n.getState().getState());
-            result.add(0,  state);
-            n = n.getParent();
+            Node n = s.getSearchTree();
+            List<Cities> result = new LinkedList<>();
+
+            while (n != null) {
+                Cities state = ((Cities) n.getState().getState());
+                result.add(0,  state);
+                n = n.getParent();
+            }
+
+            for (Cities c : result) {
+                System.out.println(c.toString());
+            }
+
+            System.out.println("Total cost: " + s.getCost());
+        }
+        catch (FailureException e) {
+            System.out.println("No path found.");
         }
 
-        for (Cities c : result) {
-            System.out.println(c.toString());
-        }
-
-        System.out.println("Total cost: " + s.getCost());
     }
 }
