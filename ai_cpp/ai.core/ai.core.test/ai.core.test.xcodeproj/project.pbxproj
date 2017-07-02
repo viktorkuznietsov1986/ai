@@ -228,6 +228,8 @@
 		771CB56D1F06017D0079327D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				HEADER_SEARCH_PATHS = /usr/local/Cellar/boost/1.64.0_1/include;
+				LIBRARY_SEARCH_PATHS = /usr/local/Cellar/boost/1.64.0_1/lib;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -235,6 +237,8 @@
 		771CB56E1F06017D0079327D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				HEADER_SEARCH_PATHS = /usr/local/Cellar/boost/1.64.0_1/include;
+				LIBRARY_SEARCH_PATHS = /usr/local/Cellar/boost/1.64.0_1/lib;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -258,6 +262,7 @@
 				771CB56E1F06017D0079327D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
