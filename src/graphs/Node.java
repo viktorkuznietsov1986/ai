@@ -8,13 +8,28 @@ public class Node {
     double pathCost;
     Node parent;
     State state;
+    Heuristics heuristics;
+
+    public Node() {
+        this(null);
+    }
+
+    public Node(Heuristics heuristics) {
+        this.heuristics = heuristics;
+    }
 
     /**
      * Gets the pathCost.
      * @return gets the path cost.
      */
     public double getPathCost() {
-        return pathCost;
+        double h = 0.0;
+
+        if (heuristics != null) {
+            h = heuristics.getCost(this);
+        }
+
+        return pathCost + h;
     }
 
     /**
@@ -40,10 +55,22 @@ public class Node {
      * @return
      */
     public Node getChildNode(Problem problem, Action action) {
+        return getChildNode(problem, action, null);
+    }
+
+    /**
+     * Gets the child node connected to the action.
+     * @param problem
+     * @param action
+     * @param heuristics
+     * @return
+     */
+    public Node getChildNode(Problem problem, Action action, Heuristics heuristics) {
         Node node = new Node();
         node.state = problem.getResult(state, action);
         node.parent = this;
         node.pathCost = pathCost + problem.getStepCost(state, action);
+        node.heuristics = heuristics;
         return node;
     }
 
