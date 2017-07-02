@@ -3,16 +3,15 @@ package graphs;
 import java.util.*;
 
 /**
- * Created by Viktor on 6/27/17.
- * Represents Uniform Cost Search strategy.
+ * Created by Viktor on 7/1/17.
  */
-public class UniformCostSearch implements Search {
+public class GreedyBestFirstSearch implements Search {
 
-    private final double totalCost;
+    private double totalCost = 0.0;
     private Node searchTree;
     private Set<Node> nodes = new HashSet<>();
 
-    public UniformCostSearch(Problem problem, State start, State end) {
+    public GreedyBestFirstSearch(Problem problem, State start, State end, Heuristics h) {
         if (problem == null)
             throw new IllegalArgumentException();
 
@@ -22,7 +21,10 @@ public class UniformCostSearch implements Search {
         if (end == null)
             throw new IllegalArgumentException();
 
-        Queue<Node> q = new PriorityQueue<>((o1, o2) -> (int) (o1.pathCost - o2.pathCost));
+        if (h == null)
+            throw new IllegalArgumentException();
+
+        Queue<Node> q = new PriorityQueue<>((o1, o2) -> (int) (h.getCost(o1) - h.getCost(o2)));
         Node s = new Node();
         s.pathCost = 0.0;
         s.state = start;
@@ -42,7 +44,9 @@ public class UniformCostSearch implements Search {
             visit(problem, q, n);
         }
 
-        totalCost = searchTree.pathCost;
+        if (searchTree != null) {
+            totalCost = searchTree.pathCost;
+        }
     }
 
     private void visit(Problem problem, Queue<Node> q, Node u) {

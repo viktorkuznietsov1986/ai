@@ -1,7 +1,5 @@
 package graphs;
 
-import java.util.List;
-
 /**
  * Created by Viktor on 6/23/17.
  * Base interface for each tree / graph searching algorithm.
