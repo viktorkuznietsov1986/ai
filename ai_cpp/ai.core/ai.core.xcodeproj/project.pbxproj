@@ -10,6 +10,8 @@
 		771CB5521F05F7430079327D /* ai_core.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 771CB5511F05F7430079327D /* ai_core.hpp */; };
 		771CB5541F05F7430079327D /* ai_corePriv.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 771CB5531F05F7430079327D /* ai_corePriv.hpp */; };
 		771CB5561F05F7430079327D /* ai_core.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 771CB5551F05F7430079327D /* ai_core.cpp */; };
+		77CD5B9B1F0DAD1B0089E335 /* grid.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 77CD5B991F0DAD1B0089E335 /* grid.cpp */; };
+		77CD5B9C1F0DAD1B0089E335 /* grid.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 77CD5B9A1F0DAD1B0089E335 /* grid.hpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -28,6 +30,8 @@
 		771CB5531F05F7430079327D /* ai_corePriv.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ai_corePriv.hpp; sourceTree = "<group>"; };
 		771CB5551F05F7430079327D /* ai_core.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ai_core.cpp; sourceTree = "<group>"; };
 		771CB56F1F06017D0079327D /* ai.core.test.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ai.core.test.xcodeproj; path = ai.core.test/ai.core.test.xcodeproj; sourceTree = "<group>"; };
+		77CD5B991F0DAD1B0089E335 /* grid.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = grid.cpp; sourceTree = "<group>"; };
+		77CD5B9A1F0DAD1B0089E335 /* grid.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = grid.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +65,7 @@
 		771CB5501F05F7430079327D /* ai.core */ = {
 			isa = PBXGroup;
 			children = (
+				77CD5B971F0DACF00089E335 /* puzzle */,
 				771CB5511F05F7430079327D /* ai_core.hpp */,
 				771CB5531F05F7430079327D /* ai_corePriv.hpp */,
 				771CB5551F05F7430079327D /* ai_core.cpp */,
@@ -76,6 +81,15 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		77CD5B971F0DACF00089E335 /* puzzle */ = {
+			isa = PBXGroup;
+			children = (
+				77CD5B991F0DAD1B0089E335 /* grid.cpp */,
+				77CD5B9A1F0DAD1B0089E335 /* grid.hpp */,
+			);
+			name = puzzle;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -83,6 +97,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				77CD5B9C1F0DAD1B0089E335 /* grid.hpp in Headers */,
 				771CB5541F05F7430079327D /* ai_corePriv.hpp in Headers */,
 				771CB5521F05F7430079327D /* ai_core.hpp in Headers */,
 			);
@@ -162,6 +177,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				771CB5561F05F7430079327D /* ai_core.cpp in Sources */,
+				77CD5B9B1F0DAD1B0089E335 /* grid.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
