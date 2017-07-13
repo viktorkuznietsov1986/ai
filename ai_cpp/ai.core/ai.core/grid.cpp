@@ -18,10 +18,17 @@ namespace eight_puzzle {
     
     grid::grid(const std::vector<std::vector<int>>& state) {
         _state.resize(GRID_SIZE);
+
+        _empty_cell = std::unique_ptr<point>(new point());
         
         for (int i = 0; i < GRID_SIZE; ++i) {
             for (int j = 0; j < GRID_SIZE; ++j) {
                 _state[i].push_back(state[i][j]);
+
+                if (EMPTY_VALUE == state[i][j]) {
+                    _empty_cell->first = i;
+                    _empty_cell->second = j;
+                }
             }
         }
     }
@@ -56,5 +63,32 @@ namespace eight_puzzle {
         
         return true;
     }
-    
+
+    std::vector<std::vector<int>> grid::get_state(const directions &direction) const {
+        // TODO
+        return std::vector<std::vector<int>>();
+    }
+
+    std::vector<directions> grid::get_directions() const {
+        std::vector<directions> result;
+
+        if (_empty_cell->first > 0) {
+            result.push_back(LEFT);
+        }
+
+        if (_empty_cell->first < GRID_SIZE - 1) {
+            result.push_back(RIGHT);
+        }
+
+        if (_empty_cell->second > 0) {
+            result.push_back(UP);
+        }
+
+        if (_empty_cell->second < GRID_SIZE - 1) {
+            result.push_back(DOWN);
+        }
+
+        return result;
+    }
+
 }

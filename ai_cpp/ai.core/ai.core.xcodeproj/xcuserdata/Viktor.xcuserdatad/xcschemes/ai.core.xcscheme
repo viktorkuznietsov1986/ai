@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "771CB54D1F05F7430079327D"
-               BuildableName = "libai.core.a"
-               BlueprintName = "ai.core"
-               ReferencedContainer = "container:ai.core.xcodeproj">
+               BlueprintIdentifier = "771CB5641F06017D0079327D"
+               BuildableName = "ai.core.test"
+               BlueprintName = "ai.core.test"
+               ReferencedContainer = "container:ai.core.test/ai.core.test.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -42,6 +42,15 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
+      <BuildableProductRunnable>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "771CB5641F06017D0079327D"
+            BuildableName = "ai.core.test"
+            BlueprintName = "ai.core.test"
+            ReferencedContainer = "container:ai.core.test/ai.core.test.xcodeproj">
+         </BuildableReference>
+      </BuildableProductRunnable>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"

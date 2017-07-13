@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		771CB5691F06017D0079327D /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 771CB5681F06017D0079327D /* main.cpp */; };
 		771CB5771F0607C00079327D /* libai.core.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 771CB5761F0607C00079327D /* libai.core.a */; };
+		98BACF572AA3C55CE8E161C7 /* grid_test.mm in Sources */ = {isa = PBXBuildFile; fileRef = 98BAC881C396DB460A96D08A /* grid_test.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -27,6 +28,8 @@
 		771CB5651F06017D0079327D /* ai.core.test */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ai.core.test; sourceTree = BUILT_PRODUCTS_DIR; };
 		771CB5681F06017D0079327D /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		771CB5761F0607C00079327D /* libai.core.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libai.core.a; path = "../../../../Library/Developer/Xcode/DerivedData/ai.core-dzxnsxueseobobhbtrvdaseeucvr/Build/Products/Debug/libai.core.a"; sourceTree = "<group>"; };
+		98BAC4BE51653D4B91A774D9 /* grid_test.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = grid_test.h; sourceTree = "<group>"; };
+		98BAC881C396DB460A96D08A /* grid_test.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = grid_test.mm; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +65,8 @@
 			isa = PBXGroup;
 			children = (
 				771CB5681F06017D0079327D /* main.cpp */,
+				98BAC881C396DB460A96D08A /* grid_test.mm */,
+				98BAC4BE51653D4B91A774D9 /* grid_test.h */,
 			);
 			path = ai.core.test;
 			sourceTree = "<group>";
@@ -132,6 +137,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				771CB5691F06017D0079327D /* main.cpp in Sources */,
+				98BACF572AA3C55CE8E161C7 /* grid_test.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
