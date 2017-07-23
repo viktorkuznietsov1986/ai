@@ -29,11 +29,12 @@ namespace eight_puzzle {
         
     public:
         grid(const std::vector<std::vector<int>>& state);
+        grid(const grid& g);
         bool is_final_state() const;
         friend std::ostream& operator<<(std::ostream& os, const eight_puzzle::grid& g);
 
         std::vector<directions> get_directions() const;
-        std::vector<std::vector<int>> get_state(const directions& direction) const;
+        std::shared_ptr<grid> go(const directions& direction) const;
         
     private:
         bool match_with_final_state() const;
@@ -42,6 +43,16 @@ namespace eight_puzzle {
         std::vector<std::vector<int>> _state;
         static std::vector<std::vector<int>> _final_state;
         std::unique_ptr<point> _empty_cell;
+
+        std::vector<std::vector<int>> void copy_current_state() const;
+
+        bool can_go_left() const;
+
+        bool can_go_right() const;
+
+        bool can_go_up() const;
+
+        bool can_go_down() const;
     };
 }
 
