@@ -15,11 +15,16 @@
 int main(int argc, const char * argv[]) {
     // insert code here...
     
-    auto g = std::unique_ptr<eight_puzzle::grid>(new eight_puzzle::grid(std::vector<std::vector<int>> {
+    auto g = std::make_shared<eight_puzzle::grid>(std::vector<std::vector<int>> {
+            {0, 1, 2},
+            {3, 4, 5},
+            {6, 7, 8}
+    });
+    /*std::unique_ptr<eight_puzzle::grid>(new eight_puzzle::grid(std::vector<std::vector<int>> {
         {0, 1, 2},
         {3, 4, 5},
         {6, 7, 8}
-    }));
+    }));*/
     
     std::cout << *g << std::endl;
     

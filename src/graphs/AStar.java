@@ -8,6 +8,7 @@ import java.util.*;
 public class AStar extends Search {
 
     private Set<Node> nodes = new HashSet<>();
+    private Set<Node> explored = new HashSet<>();
 
     public AStar(Problem problem, State start, State end, Heuristics h) throws FailureException {
         if (problem == null)
@@ -33,6 +34,13 @@ public class AStar extends Search {
 
         while (!q.isEmpty()) {
             Node n = q.poll();
+
+            if (explored.contains(n)) {
+                continue;
+            }
+
+            explored.add(n);
+
             State state = n.getState();
 
             if (state.equals(end)) {
