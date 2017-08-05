@@ -11,11 +11,20 @@ public class Node {
     Heuristics heuristics;
 
     public Node() {
-        this(null);
+
     }
 
     public Node(Heuristics heuristics) {
         this.heuristics = heuristics;
+    }
+
+    public Node(State state) {
+        this.state = state;
+    }
+
+    public Node(Heuristics heuristics, State state) {
+        this.heuristics = heuristics;
+        this.state = state;
     }
 
     /**

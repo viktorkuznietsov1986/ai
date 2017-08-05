@@ -2,12 +2,22 @@ package environment.eight_puzzle;
 
 import graphs.Action;
 import graphs.IllegalStateException;
-import graphs.Problem;
 import graphs.State;
+import graphs.localsearch.Problem;
 
 import java.util.List;
 
 public class EightPuzzleProblem implements Problem {
+
+    private State initialState;
+
+    public EightPuzzleProblem() {
+
+    }
+
+    public EightPuzzleProblem(State initialState) {
+        this.initialState = initialState;
+    }
 
     @Override
     public List<Action> getActions(State state) {
@@ -19,6 +29,7 @@ public class EightPuzzleProblem implements Problem {
     @Override
     public State getResult(State parentState, Action action) {
         Grid g = (Grid)parentState.getState();
+
         return new State() {
             @Override
             public Object getState() {
@@ -34,5 +45,15 @@ public class EightPuzzleProblem implements Problem {
     @Override
     public double getStepCost(State parentState, Action action) {
         return  1.0;
+    }
+
+    /**
+     * Gets the initial state for the Problem.
+     *
+     * @return
+     */
+    @Override
+    public State getInitialState() {
+        return initialState;
     }
 }
