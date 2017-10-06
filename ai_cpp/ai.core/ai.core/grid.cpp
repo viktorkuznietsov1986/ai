@@ -83,12 +83,12 @@ namespace eight_puzzle {
     std::shared_ptr<grid> grid::go(const directions &direction) const {
 
         auto result = std::make_shared<grid>(*this);
-        int y =
+        //int y =
 
         switch (direction) {
             case LEFT:
                 if (can_go_left()) {
-                    result->_state[]
+                    //result->_state[]
                 }
                 else {
 

@@ -44,7 +44,7 @@ namespace eight_puzzle {
         static std::vector<std::vector<int>> _final_state;
         std::unique_ptr<point> _empty_cell;
 
-        std::vector<std::vector<int>> void copy_current_state() const;
+        std::vector<std::vector<int>> copy_current_state() const;
 
         bool can_go_left() const;
 
