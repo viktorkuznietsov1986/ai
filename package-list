@@ -1,0 +1,15 @@
+environment.eight_puzzle
+environment.eightpuzzle
+environment.romania
+geometry
+graphs
+graphs.localsearch
+plane
+vacuumworld
+vacuumworld.actions
+vacuumworld.agents
+vacuumworld.cleaner
+vacuumworld.exceptions
+vacuumworld.misc
+vacuumworld.simulator
+vacuumworld.world

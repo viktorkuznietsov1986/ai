@@ -17,39 +17,16 @@ public class VacuumProblem implements Problem {
 
     @Override
     public List<Action> getActions(State state) {
-        VacuumState s = (VacuumState) state;
-        List<Action> result = new LinkedList<>();
-
-        if (!s.isClean()) {
-            if (s.isCurrentCellClean()) {
-                switch (s.position) {
-                    case Left:
-                        result.add(() -> GoRight);
-                        break;
-                    case Right:
-                        result.add(() -> GoLeft);
-                        break;
-                }
-            }
-            else {
-                result.add(() -> Suck);
-            }
-        }
-
-        return result;
+        return state.getAvailableActions();
     }
 
     @Override
     public List<State> getResult(State parentState, Action action) {
-        VacuumState s = (VacuumState) parentState.getState();
-
-        Actions a = (Actions) action.getAction();
-
-        switch (a) {
-            case Suck:
-
-                break;
+        if (parentState.isGoal()) {
+            return new LinkedList<>();
         }
+
+        return parentState.getStatesAfterAction(action);
     }
 
     @Override

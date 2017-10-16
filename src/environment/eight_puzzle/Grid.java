@@ -31,6 +31,10 @@ public class Grid {
         }
     }
 
+    /**
+     * String representation of
+     * @return string representation
+     */
     public String toString() {
         String s = "";
         for (int i = 0; i < _gridSize; ++i) {
